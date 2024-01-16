@@ -1,1 +1,1 @@
-# sud0ku
+# sud0ku_s0lver
