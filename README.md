@@ -56,8 +56,8 @@ The GUI features visualization of the solving process, allowing users to see eac
 
 To use the Sudoku solver:
 
-1. Clone the repository: `git clone https://github.com/your-username/sudoku-solver.git`
-2. Navigate to the project directory: `cd sudoku-solver`
+1. Clone the repository: `git clone https://github.com/fletxcher/sud0ku_s0lver.git`
+2. Navigate to the project directory: `cd sud0ku_s0lver`
 3. Run the solver: `python src/main.py`
 
 Follow the on-screen instructions to input Sudoku puzzles, trigger solving, and visualize the solution.
