@@ -68,3 +68,7 @@ The project includes unit tests to ensure the correctness of the solver and GUI 
 ```bash
 python -m unittest discover tests
 
+#License
+
+This project is licensed under the [MIT License](LICENSE).
+
