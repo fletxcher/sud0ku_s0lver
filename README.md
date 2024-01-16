@@ -67,8 +67,6 @@ Follow the on-screen instructions to input Sudoku puzzles, trigger solving, and 
 The project includes unit tests to ensure the correctness of the solver and GUI components. Run tests using:
 ```bash
 python -m unittest discover tests
+'''
 
-#License
-
-This project is licensed under the [MIT License](LICENSE).
 
