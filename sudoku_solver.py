@@ -1,3 +1,4 @@
+
 import tkinter as tk  
 
 
@@ -63,28 +64,21 @@ def valid_cell(board, num, pos):
 
     row, col = pos 
 
-    # check if all row elements include this number
-    for j in range (9):
-        if board [row][j] == num:
-            return False
-    
-    # check if all column elements include this number
-    for i in range (9):
-        if board [i][col] == num:
-            return False
-        
-    # check if number is already included in the block
-        row_block_start = 3*(row // 3)
-        col_block_start = 3*(col // 3)
+    # check if the number is already in the same row
+    if num in board[row]:
+        return False
 
-        row_block_end = row_block_start + 3
-        col_block_end = col_block_start + 3
-        for i in range(row_block_start, row_block_end):
-            for j in range (col_block_start,col_block_end):
-                if board [i][j] == num:
-                    return False
-            
-        return True
+    # check if the number is already in the same column
+    if num in [board[i][col] for i in range(9)]:
+        return False
+
+    # check if the number is already in the same 3x3 block
+    row_block_start, col_block_start = 3 * (row // 3), 3 * (col // 3)
+    row_block_end, col_block_end = row_block_start + 3, col_block_start + 3
+    if num in [board[i][j] for i in range(row_block_start, row_block_end) for j in range(col_block_start, col_block_end)]:
+        return False
+
+    return True
 
 
 # implement the backtracking algorithm in order to solve the sudoku board
@@ -287,7 +281,6 @@ def solve(board):
     empty = find_empty(board)
     if not empty:
         # board is solved
-        print ('Board solved')
         return True 
     else:
         row, col = empty
@@ -321,6 +314,9 @@ solve_button = tk.Button(root, text='Solve', fg='black', command=final_solution,
 solve_button.grid(row=10, columnspan=9)
 
 root.mainloop()
+
+
+
 
 
 
