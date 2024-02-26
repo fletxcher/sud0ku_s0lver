@@ -29,7 +29,7 @@ The Sudoku solver algorithm uses a backtracking approach to explore possible sol
 
 ## GUI
 
-The graphical user interface is implemented using Tkinter, providing users with an interactive platform to input Sudoku puzzles, trigger the solving process, and visualize the solution steps. The GUI code can be found in the `src/gui.py` file.
+The graphical user interface is implemented using Tkinter, providing users with an interactive platform to input Sudoku puzzles, trigger the solving process, and visualize the result.
 
 ## Puzzle Generator
 
