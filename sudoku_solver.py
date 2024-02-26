@@ -1,11 +1,11 @@
 
 import tkinter as tk  
-
+import random
 
 # create the main window of the gui
 root = tk.Tk()
 root.title('Sudoku Solver')
-root.geometry('250x280')
+root.geometry('260x300')
 
 # create a weight for each row and column
 for i in range(9):
@@ -27,12 +27,29 @@ initial_board = [
 
 entries = [[None] * 9 for _ in range(9)]
 
+
 def build_widget(initial_board):
     for i in range(9):
         for j in range(9):
             value = initial_board[i][j]
             entry = tk.Entry(root, width=2, font=('arial', 14), justify='center')
             entry.grid(row=i, column=j)
+
+            # determine the background color based on the 3x3 subgrid
+            if (i // 3 + j // 3) % 2 == 0:
+                bg_color = 'white'
+                fg_color = 'black'
+            else:
+                bg_color = 'black'
+                fg_color = 'white'
+
+            # Create a Frame for each Entry widget with the determined background color
+            frame = tk.Frame(root, width=30, height=30, bg=bg_color, bd = 1 )
+            frame.grid(row=i, column=j)
+
+            # Create Entry widget inside the Frame
+            entry = tk.Entry(frame, width=2, font=('Arial', 14), justify='center', bd=0, bg=bg_color, fg=fg_color)
+            entry.pack()
 
             # Set the initial value for the entry widget
             if value != 0:  
@@ -64,20 +81,28 @@ def valid_cell(board, num, pos):
 
     row, col = pos 
 
+    # print the current cell being checked
+    print(f'checking validity of {num} at ({row}, {col})')
+
     # check if the number is already in the same row
     if num in board[row]:
+        print(f'number {num} is already in the same row at ({row}, {col}), therefore invalid')
         return False
 
     # check if the number is already in the same column
     if num in [board[i][col] for i in range(9)]:
+        print(f'number {num} is already in the same column at ({row}, {col}), therefore invalid')
         return False
 
     # check if the number is already in the same 3x3 block
     row_block_start, col_block_start = 3 * (row // 3), 3 * (col // 3)
     row_block_end, col_block_end = row_block_start + 3, col_block_start + 3
     if num in [board[i][j] for i in range(row_block_start, row_block_end) for j in range(col_block_start, col_block_end)]:
+        print(f'number {num} is already in the same 3x3 block at ({row}, {col}), therefore invalid')
         return False
 
+  # if none of the above conditions are met, the number is valid for the cell
+    print(f'{num} is valid at ({row}, {col})')
     return True
 
 
@@ -93,16 +118,16 @@ def solve_sudoku(board,cache):
         for value in range(1, 10):
             if valid_cell(board, value, (row, col)):
                 board[row][col] = value
-                print (f'Trying {value} at ({row},{col})')
+                print (f'trying {value} at ({row},{col})')
                 solution_steps = solve_sudoku(board,cache)
                 # backtrack if the current value doesn't lead to a solution
                 if not solution_steps:  
-                    print(f'Backtracking from ({row},{col})')
+                    print(f'backtracking from ({row},{col})')
                     board[row][col] = 0
                 else:
                     return [(row, col, value)] + solution_steps
         # return an empty list if no valid solution is found
-        print ('No valid solution found')
+        print ('no valid solution found')
         return []
 
 
@@ -256,16 +281,13 @@ def order_valid_values(board, cache):
 
             return cache
 
-# update_gui_with_solution function should be implemented
+# update_gui_with_solution function implementation
 def update_gui_with_solution(solution_steps):
     for step in solution_steps:
         if step is not None:
             row, col, value = step
             entries[row][col].delete(0, tk.END)
             entries[row][col].insert(0, str(value))
-        else:            
-            print("No valid solution found for the current configuration.")
-
 
 # update the GUI with the solution steps
 def update_gui(board):
@@ -277,7 +299,7 @@ def update_gui(board):
 
 # solve the sudoku board 
 def solve(board):
-    print(f"Solving: {board}")
+    print(f"solving: {board}")
     empty = find_empty(board)
     if not empty:
         # board is solved
@@ -296,22 +318,19 @@ def solve(board):
         return None 
 
 
-
 # final soltution function should call the solving algorithm and update the GUI
 def final_solution():
     current_board = get_board_state()
     cache = order_valid_values(current_board, cache_valid_values(current_board, 0, 0))
     solved_board = solve(current_board)
     if solved_board:
-        print ('Solved')
+        print ('solved')
         update_gui(solved_board)
     else:
-        print("No solution found.")
+        print("no solution found.")
 
-
-# solve button
-solve_button = tk.Button(root, text='Solve', fg='black', command=final_solution, bg='white',justify='center')
-solve_button.grid(row=10, columnspan=9)
+solve_button = tk.Button(root, text='Solve', fg='black', command=final_solution, bg='white',justify='left')
+solve_button.grid(row=10, column=3, columnspan=3)
 
 root.mainloop()
 
