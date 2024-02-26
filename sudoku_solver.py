@@ -81,28 +81,21 @@ def valid_cell(board, num, pos):
 
     row, col = pos 
 
-    # print the current cell being checked
-    print(f'checking validity of {num} at ({row}, {col})')
-
     # check if the number is already in the same row
     if num in board[row]:
-        print(f'number {num} is already in the same row at ({row}, {col}), therefore invalid')
         return False
 
     # check if the number is already in the same column
     if num in [board[i][col] for i in range(9)]:
-        print(f'number {num} is already in the same column at ({row}, {col}), therefore invalid')
         return False
 
     # check if the number is already in the same 3x3 block
     row_block_start, col_block_start = 3 * (row // 3), 3 * (col // 3)
     row_block_end, col_block_end = row_block_start + 3, col_block_start + 3
     if num in [board[i][j] for i in range(row_block_start, row_block_end) for j in range(col_block_start, col_block_end)]:
-        print(f'number {num} is already in the same 3x3 block at ({row}, {col}), therefore invalid')
         return False
 
   # if none of the above conditions are met, the number is valid for the cell
-    print(f'{num} is valid at ({row}, {col})')
     return True
 
 
@@ -118,16 +111,13 @@ def solve_sudoku(board,cache):
         for value in range(1, 10):
             if valid_cell(board, value, (row, col)):
                 board[row][col] = value
-                print (f'trying {value} at ({row},{col})')
                 solution_steps = solve_sudoku(board,cache)
                 # backtrack if the current value doesn't lead to a solution
                 if not solution_steps:  
-                    print(f'backtracking from ({row},{col})')
                     board[row][col] = 0
                 else:
                     return [(row, col, value)] + solution_steps
         # return an empty list if no valid solution is found
-        print ('no valid solution found')
         return []
 
 
@@ -299,7 +289,6 @@ def update_gui(board):
 
 # solve the sudoku board 
 def solve(board):
-    print(f"solving: {board}")
     empty = find_empty(board)
     if not empty:
         # board is solved
@@ -318,16 +307,13 @@ def solve(board):
         return None 
 
 
-# final soltution function should call the solving algorithm and update the GUI
+# final soltution function calls the solving algorithm and updates the GUI
 def final_solution():
     current_board = get_board_state()
     cache = order_valid_values(current_board, cache_valid_values(current_board, 0, 0))
     solved_board = solve(current_board)
     if solved_board:
-        print ('solved')
         update_gui(solved_board)
-    else:
-        print("no solution found.")
 
 solve_button = tk.Button(root, text='Solve', fg='black', command=final_solution, bg='white',justify='left')
 solve_button.grid(row=10, column=3, columnspan=3)
