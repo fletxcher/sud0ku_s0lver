@@ -20,7 +20,6 @@ This project aims to provide a Sudoku solver with an interactive GUI. The solver
 
 - Sudoku solver algorithm with backtracking
 - Tkinter-based GUI for user interaction
-- Puzzle generator with varying difficulty levels
 - Visual representation of the solving process
 
 ## Algorithm
