@@ -31,9 +31,6 @@ The Sudoku solver algorithm uses a backtracking approach to explore possible sol
 
 The graphical user interface is implemented using Tkinter, providing users with an interactive platform to input Sudoku puzzles, trigger the solving process, and visualize the result.
 
-## Puzzle Generator
-
-The project includes a puzzle generator that creates Sudoku puzzles of varying difficulty levels. The generator ensures that generated puzzles are solvable.
 
 ## Visualization
 
