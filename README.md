@@ -8,7 +8,6 @@ A Python-based Sudoku solver with a graphical user interface (GUI) implemented u
 - [Features](#features)
 - [Algorithm](#algorithm)
 - [GUI](#gui)
-- [Puzzle Generator](#puzzle-generator)
 - [Visualization](#visualization)
 - [Usage](#usage)
 
