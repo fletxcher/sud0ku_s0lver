@@ -30,10 +30,6 @@ The Sudoku solver algorithm uses a backtracking approach to explore possible sol
 The graphical user interface is implemented using Tkinter, providing users with an interactive platform to input Sudoku puzzles, trigger the solving process, and visualize the result.
 
 
-## Visualization
-
-The GUI features visualization of the backtracking algrotihms efficiency.
-
 ## Usage
 
 To use the Sudoku solver:
