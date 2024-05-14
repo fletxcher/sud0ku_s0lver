@@ -22,9 +22,14 @@ The graphical user interface is implemented using Tkinter, providing users with 
 
 
 ## More Information...
+
 [https://www.geeksforgeeks.org/backtracking-algorithms/](https://www.geeksforgeeks.org/introduction-to-backtracking-data-structure-and-algorithm-tutorials/)
 
 https://en.wikipedia.org/wiki/Backtracking
+
+https://docs.python.org/3/library/tk.html
+
+https://tkdocs.com/
 
 
 
