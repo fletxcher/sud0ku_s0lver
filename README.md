@@ -2,7 +2,7 @@
 
 A Python-based Sudoku solver with a graphical user interface (GUI) implemented using Tkinter.
 
-## Introduction
+## Summary
 
 This project aims to provide a Sudoku solver with an interactive GUI. The solver utilizes a backtracking algorithm to find solutions to Sudoku puzzles of varying difficulty levels. The GUI, implemented using Tkinter, allows users to input puzzles, trigger the solving process, and visualize each the solution.
 
